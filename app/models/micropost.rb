@@ -9,7 +9,7 @@ class Micropost < ApplicationRecord
 
   private
 
-    # アップロードされた画像のサイズをバリデーションする
+    # アップロードされた画像のサイズをバリデーション
     def picture_size
       if picture.size > 1.megabytes
         errors.add(:picture, "should be less than 1MB")
