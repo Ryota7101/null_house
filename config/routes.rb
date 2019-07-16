@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'houses/index'
+
+  get 'houses/show'
+
+  get 'houses/edit'
+
+  get 'houses/new'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -28,4 +36,5 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
+  resources :houses, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 end

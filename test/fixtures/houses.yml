@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  user: one
+  overview: MyText
+  layout: MyString
+  price: 1
+  land_area: 1
+  building_area: 1
+  age_of_a_building: 1
+  adoress: MyText
+  sell_or_lend: MyString
+
+two:
+  title: MyString
+  user: two
+  overview: MyText
+  layout: MyString
+  price: 1
+  land_area: 1
+  building_area: 1
+  age_of_a_building: 1
+  adoress: MyText
+  sell_or_lend: MyString
