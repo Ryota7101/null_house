@@ -1,5 +1,6 @@
 class HousesController < ApplicationController
   def index
+    @houses = House.all
   end
 
   def show
@@ -31,10 +32,22 @@ class HousesController < ApplicationController
   end
   
   def create
-    @house = House.new(house_params)
-    @house.save
-    flash[:success] = '空き家を登録しました'
-    redirect_to root_url
+    @house = current_user.houses.create(house_params)
+    ##@house = House.new(house_params)
+    if @house.save # => Validation
+      flash[:success] = "登録成功だっちゃ"
+      redirect_to root_url
+    else
+      # Failure
+      render 'new'
+    end
   end
+  
+  private
+
+    def house_params
+      params.require(:house).permit(:title, :overview,:layout,:price,:land_area,
+      :building_area,:age_of_a_building,:adoress,:sell_or_lend)
+    end
 
 end

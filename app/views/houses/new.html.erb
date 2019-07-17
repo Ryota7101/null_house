@@ -1,2 +1,37 @@
 <h1>Houses#new</h1>
-<p>Find me in app/views/houses/new.html.erb</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@house) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :overview %>
+      <%= f.text_field :overview, class: 'form-control' %>
+      
+      <%= f.label :layout %>
+      <%= f.number_field :layout, class: 'form-control' %>
+      
+      <%= f.label :price %>
+      <%= f.number_field :price, class: 'form-control' %>
+      
+      <%= f.label :land_area %>
+      <%= f.number_field :land_area, class: 'form-control' %>
+      
+      <%= f.label :building_area %>
+      <%= f.number_field :building_area, class: 'form-control' %>
+      
+      <%= f.label :age_of_a_building %>
+      <%= f.number_field :age_of_a_building, class: 'form-control' %>
+      
+      <%= f.label :adoress %>
+      <%= f.text_field :adoress, class: 'form-control' %>
+      
+      <%= f.label :sell_or_lend %>
+      <%= f.text_field :sell_or_lend, class: 'form-control' %>
+
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

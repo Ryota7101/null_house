@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20190716103123) do
     t.string "sell_or_lend"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_houses_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_houses_on_user_id"
   end
 
