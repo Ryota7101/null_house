@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/:id
   def show
     @user       = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    #@houses     = @user.houses.find_by(id:2)
     # => app/views/users/show.html.erb
     # debugger
   end
