@@ -17,9 +17,8 @@ class User < ApplicationRecord
     through: 'passive_relationships',
      source: 'follower'
      
-  has_many :houses
   has_many :favorites
-  has_many :favorite_houses, through: :favorites, source: :post
+  has_many :favorite_houses, through: :favorites, source: :house
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -105,6 +104,29 @@ class User < ApplicationRecord
 
   def following?(other_user)
     self.following.include?(other_user)
+  end
+  
+  
+  
+  def favorite(house)
+    favorites.find_or_create_by(house_id: house.id)
+  end
+
+  #お気に入り削除
+  def unfavorite(house)
+    favorite = favorites.find_by(house_id: house.id)
+    favorite.destroy if favorite
+  end
+
+  #お気にり登録判定
+  def  favpost?(house)
+    self.favposts.include?(house)
+  end
+  
+  def favorites
+    @user = User.find(params[:id])
+    @favposts = @user.favposts.page(params[:page])
+    counts(@user)
   end
 
   private
