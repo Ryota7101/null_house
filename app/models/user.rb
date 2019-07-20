@@ -16,6 +16,10 @@ class User < ApplicationRecord
   has_many :followers,
     through: 'passive_relationships',
      source: 'follower'
+     
+  has_many :houses
+  has_many :favorites
+  has_many :favorite_houses, through: :favorites, source: :post
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

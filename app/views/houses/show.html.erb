@@ -1,6 +1,8 @@
 <h1>Houses#show</h1>
 <%= @house.title %>, <%= @house.overview %>
 
+<%= @user.name%>, <%= @user.email%>
+
 <% if current_user.id == @house.user_id %>
     | <%= link_to "delete", @house, method: :delete,data: { confirm: "消すよ?" } %>
 <% end %>

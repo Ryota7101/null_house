@@ -1,5 +1,7 @@
 class House < ApplicationRecord
   belongs_to :user
+  has_many :favorites
+  has_many :users, through: :favorites
   
   validates :title, presence: true,length: { maximum: 50 }
   validates :overview, presence: true,length: { maximum: 140 }

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/:id
   def show
     @user       = User.find(params[:id])
-    #@houses     = @user.houses.find_by(id:2)
+    @houses     = @user.houses
     # => app/views/users/show.html.erb
     # debugger
   end
