@@ -79,6 +79,12 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
+  
+  def likes
+    @user = User.find(params[:id])
+    @favorite_houses = @user.favorite_houses.page(params[:page])
+    counts(@user)
+  end
 
   private
 

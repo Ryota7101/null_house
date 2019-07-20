@@ -2,5 +2,8 @@
 <% @houses.each do |house| %>
     <li>
       <%= link_to house.title, house %>
+      <div>
+          <%= render 'favorites/like_button', house: house %>
+      </div>
     </li>
   <% end %>

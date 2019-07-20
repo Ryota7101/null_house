@@ -119,13 +119,13 @@ class User < ApplicationRecord
   end
 
   #お気にり登録判定
-  def  favpost?(house)
-    self.favposts.include?(house)
+  def  favorite_houses?(house)
+    self.favorite_houses.include?(house)
   end
   
   def favorites
     @user = User.find(params[:id])
-    @favposts = @user.favposts.page(params[:page])
+    @favorite_houses = @user.favorite_houses.page(params[:page])
     counts(@user)
   end
 
