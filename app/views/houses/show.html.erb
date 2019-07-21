@@ -3,6 +3,22 @@
 
 <%= @user.name%>, <%= @user.email%>
 
+
+<!--favorite-->
+<% if current_user.favorite_houses?(@house) %>
+    <%= form_for(current_user.favorites.find_by(house_id: @house.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :house_id, @house.id %>
+      <%= f.submit 'お気に入り登録解除ボタン', class: 'btn btn-danger' %>
+    <% end %>
+<% else %>
+    <%= form_for(current_user.favorites.build) do |f| %>
+      <%= hidden_field_tag :house_id, @house.id %>
+      <%= f.submit 'お気に入り登録ボタン', class: 'btn btn-primary' %>
+    <% end %>
+<% end %>
+<!--favorite-->
+
+
 <% if current_user.id == @house.user_id %>
     | <%= link_to "delete", @house, method: :delete,data: { confirm: "消すよ?" } %>
 <% end %>

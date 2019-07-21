@@ -106,8 +106,6 @@ class User < ApplicationRecord
     self.following.include?(other_user)
   end
   
-  
-  
   def favorite(house)
     favorites.find_or_create_by(house_id: house.id)
   end
@@ -121,12 +119,6 @@ class User < ApplicationRecord
   #お気にり登録判定
   def  favorite_houses?(house)
     self.favorite_houses.include?(house)
-  end
-  
-  def favorites
-    @user = User.find(params[:id])
-    @favorite_houses = @user.favorite_houses.page(params[:page])
-    counts(@user)
   end
 
   private

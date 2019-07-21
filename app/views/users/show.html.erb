@@ -20,4 +20,13 @@
         </li>
       <% end %>
   </div>
+  
+  <% favos = Favorite.where(user_id:@user.id) %>
+  <% favos.each do |favo| %>
+    <li>
+      <%favo_house = House.find(favo.house_id)%>
+      <%= link_to favo_house.title, favo_house %>
+    </li>
+  <% end %>
+  
 </div>
