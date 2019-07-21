@@ -1,6 +1,6 @@
 class HousesController < ApplicationController
   def index
-    @houses = House.all
+    @houses = House.all.search(params[:search])
   end
 
   def show
@@ -43,7 +43,7 @@ class HousesController < ApplicationController
       render 'new'
     end
   end
-  
+
   private
 
     def house_params

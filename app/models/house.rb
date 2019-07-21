@@ -13,4 +13,12 @@ class House < ApplicationRecord
   validates :age_of_a_building, presence: true
   validates :adoress, presence: true,length: { maximum: 140 }
   validates :sell_or_lend, presence: true
+  
+  def self.search(search) #ここでのself.はUser.を意味する
+    if search
+      where(['title LIKE ?', "%#{search}%"]) #検索とnameの部分一致を表示。User.は省略
+    else
+      all #全て表示。User.は省略
+    end
+  end
 end
