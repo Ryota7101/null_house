@@ -22,3 +22,18 @@
 <% if current_user.id == @house.user_id %>
     | <%= link_to "delete", @house, method: :delete,data: { confirm: "消すよ?" } %>
 <% end %>
+
+
+<h2>コメント一覧</h2>
+<% @comments.each do |comment| %>
+  <div>
+    <a href="/users/<%= @house.user.id %>"><%= comment.user.email %></a>
+    <%= comment.content %>
+  </div>
+<% end %>
+
+<%= form_for [@house, @comment] do |f| %>
+  <%= f.text_field :content %>
+  <br>
+  <%= f.submit 'コメントする' %>
+<% end %>

@@ -6,6 +6,8 @@ class HousesController < ApplicationController
   def show
     @house = House.find(params[:id])
     @user  = User.find_by(id:@house.user_id)
+    @comments = @house.comments
+    @comment = Comment.new
   end
 
   def edit
