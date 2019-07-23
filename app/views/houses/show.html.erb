@@ -40,4 +40,13 @@
 
 
 
-<%= lm(3,4) %>
+<% x1 = @house.layout.to_i %>
+<% x2 = @house.land_area.to_i %>
+<% x3 = @house.building_area.to_i %>
+<% x4 = @house.age_of_a_building.to_i %>
+<% x5 = @house.adoress.to_i %>
+
+<% if current_user.id == @house.user_id %>
+  <h3>家賃予測価格</h3>
+  <%= lm(x1,x2,x3,x4,x5) %>
+<% end %>
