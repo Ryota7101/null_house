@@ -1,4 +1,6 @@
 class HousesController < ApplicationController
+  helper_method :lm
+  
   def index
     @houses = House.all.search(params[:search])
   end
@@ -44,6 +46,10 @@ class HousesController < ApplicationController
       # Failure
       render 'new'
     end
+  end
+  
+  def lm(x1,x2)
+    100 + x1*100 + x2*200
   end
 
   private

@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
-    
+    @comment = current_user.comments.new(comment_params)
     @comment.user_id = current_user.id
     house = House.find(params[:house_id])
     @comment.house_id = house.id
