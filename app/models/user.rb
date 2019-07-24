@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :favorite_houses, through: :favorites, source: :house
   
   has_many :comments
+  
+  has_many :reservations, dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

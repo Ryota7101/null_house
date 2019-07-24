@@ -4,6 +4,7 @@ class House < ApplicationRecord
   has_many :favorites, foreign_key: 'house_id', dependent: :destroy
   has_many :users, through: :favorites
   has_many :comments
+  has_many :reservations
   
   validates :title, presence: true,length: { maximum: 50 }
   validates :overview, presence: true,length: { maximum: 140 }

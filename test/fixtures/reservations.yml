@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  house: one
+  start_date: 2019-07-24 11:00:31
+  end_date: 2019-07-24 11:00:31
+
+two:
+  user: two
+  house: two
+  start_date: 2019-07-24 11:00:31
+  end_date: 2019-07-24 11:00:31

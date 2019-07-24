@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
 
   get 'sessions/new'
+  
 
   root 'static_pages#home' # => root_path
   get  '/help',    to: 'static_pages#help'
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  
+  
   
 
 
@@ -39,6 +42,8 @@ Rails.application.routes.draw do
   resources :relationships,       only: [:create, :destroy]
   resources :houses, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :comments, only: [:create]
+    resources :reservations,only: [:create]
+    
   end
   resources :favorites, only: [:create, :destroy] 
   

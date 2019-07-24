@@ -50,3 +50,31 @@
   <h3>家賃予測価格</h3>
   <%= lm(x1,x2,x3,x4,x5) %>
 <% end %>
+
+
+
+<%= form_for [@house, @house.reservations.new] do |f| %>
+
+  <%= f.hidden_field :house_id, value: @house.id %>
+  <div class="col-md-6">
+  <label>借りたい日</label>
+  <%= f.text_field  :start_date,  :class => 'datepicker' %>
+  </div>
+  
+  <div class="col-md-6">
+  <label>返す日</label>
+  <%= f.text_field :end_date, :class => 'datepicker' %>
+  </div>
+  </div>
+  
+  <%= f.submit "この日程で予約する", class: "btn btn-danger btn-wide" %>
+<% end %>
+
+
+<% reservs = Reservation.where(house_id:@house.id) %>
+  <% reservs.each do |resev| %>
+    <li>
+      <%= resev.start_date%>
+      <%= resev.end_date%>
+    </li>
+<% end %>
