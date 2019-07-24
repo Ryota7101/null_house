@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190724110031) do
+ActiveRecord::Schema.define(version: 20190724121441) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -20,15 +20,6 @@ ActiveRecord::Schema.define(version: 20190724110031) do
     t.datetime "updated_at", null: false
     t.index ["house_id"], name: "index_comments_on_house_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "entries", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_entries_on_room_id"
-    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -58,16 +49,6 @@ ActiveRecord::Schema.define(version: 20190724110031) do
     t.index ["user_id"], name: "index_houses_on_user_id"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_messages_on_room_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -89,12 +70,6 @@ ActiveRecord::Schema.define(version: 20190724110031) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -108,6 +83,7 @@ ActiveRecord::Schema.define(version: 20190724110031) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.boolean "premium", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
