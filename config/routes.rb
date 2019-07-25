@@ -13,6 +13,13 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
   
+  get 'admins/users'
+  get 'admins/houses'
+  get 'admins/comments'
+  get 'admins/reservations'
+  get 'admins/datavisualizations'
+  
+  
 
   root 'static_pages#home' # => root_path
   get  '/help',    to: 'static_pages#help'
@@ -26,6 +33,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   
   
+ 
   
 
 
@@ -46,5 +54,4 @@ Rails.application.routes.draw do
     
   end
   resources :favorites, only: [:create, :destroy] 
-  
 end
