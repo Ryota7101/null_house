@@ -15,6 +15,7 @@ class AdminsController < ApplicationController
   end
   
   def datavisualizations 
+    @users = User.pluck('premium')
   end
 
 end

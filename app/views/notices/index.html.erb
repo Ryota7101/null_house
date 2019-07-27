@@ -1,0 +1,6 @@
+<h1>notice#index</h1>
+<% @notices.each do |notice| %>
+    <li>
+      <%= link_to notice.title, notice %>
+    </li>
+<% end %>

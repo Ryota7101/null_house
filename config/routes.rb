@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'admins/datavisualizations'
   
   
+  
 
   root 'static_pages#home' # => root_path
   get  '/help',    to: 'static_pages#help'
@@ -32,11 +33,6 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
-  
- 
-  
-
-
   resources :users do
     member do
       # /users/:id/ ...
@@ -53,5 +49,10 @@ Rails.application.routes.draw do
     resources :reservations,only: [:create]
     
   end
-  resources :favorites, only: [:create, :destroy] 
+  resources :favorites, only: [:create, :destroy]
+  
+scope '/admins' do
+    resources :notices, only: [:index, :show, :new, :create, :destroy]
+  end
+
 end
