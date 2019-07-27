@@ -1,4 +1,8 @@
 class NoticesController < ApplicationController
+  before_action :ensure_correct_user, {only: [:index, 
+                                              :show,
+                                              :new,
+                                              :create]}
   
   def index
     @notices = Notice.all
@@ -24,7 +28,14 @@ class NoticesController < ApplicationController
     end
   end
   
-  
+  def ensure_correct_user
+    if current_user.admin?
+      #何もしない
+    else
+      flash[:notice] = "アクセス権限がありません"
+      redirect_to root_url
+    end
+  end
   
   private
 
