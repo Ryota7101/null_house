@@ -10,6 +10,7 @@ class HousesController < ApplicationController
     @user  = User.find_by(id:@house.user_id)
     @comments = @house.comments
     @comment = Comment.new
+    @offer = Offer.find_by(id:@house.id)
   end
 
   def edit

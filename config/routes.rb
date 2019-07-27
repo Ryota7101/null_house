@@ -18,9 +18,6 @@ Rails.application.routes.draw do
   get 'admins/comments'
   get 'admins/reservations'
   get 'admins/datavisualizations'
-  
-  
-  
 
   root 'static_pages#home' # => root_path
   get  '/help',    to: 'static_pages#help'
@@ -47,12 +44,14 @@ Rails.application.routes.draw do
   resources :houses, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :comments, only: [:create]
     resources :reservations,only: [:create]
-    
   end
+  
   resources :favorites, only: [:create, :destroy]
   
-scope '/admins' do
+  scope '/admins' do
     resources :notices, only: [:index, :show, :new, :create, :destroy]
   end
+  
+  resources :offers, only: [:new, :create]
 
 end
