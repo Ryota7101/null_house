@@ -14,9 +14,11 @@ class AdminsController < ApplicationController
   end
   
   def comments
+    @comments = Comment.all
   end
   
   def reservations
+    @reservations = Reservation.all
   end
   
   def datavisualizations 

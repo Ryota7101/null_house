@@ -1,4 +1,7 @@
-<h1>予約</h1>
-<ul class="users">
-  <%= render @reservations %>
-</ul>
+<h1>内覧予約管理画面</h1>
+<% @reservations.each do |rese| %>
+    <li>
+      user id : <%= rese.user_id %> house id : <%= rese.house_id %> 
+      開始時間 : <%= rese.start_date %> 終了時間 : <%= rese.end_date %>
+    </li>
+<% end %>

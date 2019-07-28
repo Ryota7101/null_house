@@ -1,84 +1,87 @@
-<h1>Houses#show</h1>
-<%= @house.title %>, <%= @house.overview %>
-
-<%= @user.name%>, <%= @user.email%>
-
-
-<!--favorite-->
-<% if current_user.favorite_houses?(@house) %>
-    <%= form_for(current_user.favorites.find_by(house_id: @house.id), html: { method: :delete }) do |f| %>
-      <%= hidden_field_tag :house_id, @house.id %>
-      <%= f.submit 'お気に入り登録解除ボタン', class: 'btn btn-danger' %>
-    <% end %>
-<% else %>
-    <%= form_for(current_user.favorites.build) do |f| %>
-      <%= hidden_field_tag :house_id, @house.id %>
-      <%= f.submit 'お気に入り登録ボタン', class: 'btn btn-primary' %>
-    <% end %>
-<% end %>
-<!--favorite-->
-
-
-<% if current_user.id == @house.user_id %>
-    | <%= link_to "delete", @house, method: :delete,data: { confirm: "消すよ?" } %>
-<% end %>
-
-
-<h2>コメント一覧</h2>
-<% @comments.each do |comment| %>
-  <div>
-    <a href="/users/<%= @house.user.id %>"><%= comment.user.email %></a>
-    <%= comment.content %>
-  </div>
-<% end %>
-
-<%= form_for [@house, @comment] do |f| %>
-  <%= f.text_field :content %>
-  <br>
-  <%= f.submit 'コメントする' %>
-<% end %>
-
-
-
-<% x1 = @house.layout.to_i %>
-<% x2 = @house.land_area.to_i %>
-<% x3 = @house.building_area.to_i %>
-<% x4 = @house.age_of_a_building.to_i %>
-<% x5 = @house.adoress.to_i %>
-
-<% if current_user.id == @house.user_id %>
-  <h3>家賃予測価格</h3>
-  <%= lm(x1,x2,x3,x4,x5) %>
-<% end %>
-
-
-
-<%= form_for [@house, @house.reservations.new] do |f| %>
-
-  <%= f.hidden_field :house_id, value: @house.id %>
-  <div class="col-md-6">
-  <label>借りたい日</label>
-  <%= f.text_field  :start_date,  :class => 'datepicker' %>
-  </div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <h1><%= @house.title %></h1>
+  <h2><%= @house.overview %></h2>
   
-  <div class="col-md-6">
-  <label>返す日</label>
-  <%= f.text_field :end_date, :class => 'datepicker' %>
-  </div>
-  </div>
+  <h3>貸し出し者 : <%= @user.name%></h3>
   
-  <%= f.submit "この日程で予約する", class: "btn btn-danger btn-wide" %>
-<% end %>
+  <% if current_user.favorite_houses?(@house) %>
+      <%= form_for(current_user.favorites.find_by(house_id: @house.id), html: { method: :delete }) do |f| %>
+        <%= hidden_field_tag :house_id, @house.id %>
+        <%= f.submit 'お気に入りを解除する', class: 'btn btn-danger' %>
+      <% end %>
+  <% else %>
+      <%= form_for(current_user.favorites.build) do |f| %>
+        <%= hidden_field_tag :house_id, @house.id %>
+        <%= f.submit 'お気に入りに登録する', class: 'btn btn-primary' %>
+      <% end %>
+  <% end %>
+  
+  
+  
+  <% if current_user.id == @house.user_id %>
+      | <%= link_to "空き家を削除する", @house, method: :delete,data: { confirm: "削除してよろしいですか？" } %>
+  <% end %>
+  
+  
+  <h2>この空き家へのコメント一覧</h2>
+  <% @comments.each do |comment| %>
+    <div>
+      <a href="/users/<%= @house.user.id %>"><%= comment.user.email %></a>
+      <%= comment.content %>
+    </div>
+  <% end %>
+  
+  <%= form_for [@house, @comment] do |f| %>
+    <%= f.text_field :content %>
+    <br>
+    <%= f.submit 'コメントする' ,class: 'btn btn-primary'%>
+  <% end %>
+  
+  <h3>空き家の内覧予約をとる</h3>
+  <%= form_for [@house, @house.reservations.new] do |f| %>
+  
+    <%= f.hidden_field :house_id, value: @house.id %>
+    <div class="col-md-6">
+    <label>開始日時</label>
+    <%= f.text_field  :start_date,  :class => 'datepicker' %>
+    </div>
+    
+    <div class="col-md-6">
+    <label>終了日時</label>
+    <%= f.text_field :end_date, :class => 'datepicker' %>
+    </div>
+    </div>
+    
+    <%= f.submit "この日程で予約する", class: "btn btn-primary" %>
+  <% end %>
+  
+  <h3>現在の予約</h3>
+  <% reservs = Reservation.where(house_id:@house.id) %>
+    <% reservs.each do |resev| %>
+      <li>
+        <%= resev.start_date%>
+        <%= resev.end_date%>
+      </li>
+  <% end %>
+  
+  <% x1 = @house.layout.to_i %>
+  <% x2 = @house.land_area.to_i %>
+  <% x3 = @house.building_area.to_i %>
+  <% x4 = @house.age_of_a_building.to_i %>
+  <% x5 = @house.adoress.to_i %>
+  
+  <% if current_user.id == @house.user_id %>
+    <h3>家賃予測価格</h3>
+    <p>この空き家の１ヶ月の適正価格は<%= lm(x1,x2,x3,x4,x5) %>円です</p>
+  <% end %>
+
+  
+  <h3>オファー一覧</h3>
+  <% if @offer %>
+    user id : <%= @offer.user_id%><%= @offer.use %>
+  <% end %>
 
 
-<% reservs = Reservation.where(house_id:@house.id) %>
-  <% reservs.each do |resev| %>
-    <li>
-      <%= resev.start_date%>
-      <%= resev.end_date%>
-    </li>
-<% end %>
-
-<% if @offer %>
-  <%= @offer.use %>
-<% end %>
+  </div>
+</div>

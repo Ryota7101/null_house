@@ -14,7 +14,6 @@ class House < ApplicationRecord
   validates :building_area, presence: true
   validates :age_of_a_building, presence: true
   validates :adoress, presence: true,length: { maximum: 140 }
-  validates :sell_or_lend, presence: true
   
   def self.search(search) #ここでのself.はUser.を意味する
     if search

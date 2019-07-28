@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190727133332) do
+ActiveRecord::Schema.define(version: 20190728063759) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -42,17 +42,10 @@ ActiveRecord::Schema.define(version: 20190727133332) do
     t.integer "building_area"
     t.integer "age_of_a_building"
     t.text "adoress"
-    t.string "sell_or_lend"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_houses_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_houses_on_user_id"
-  end
-
-  create_table "news", force: :cascade do |t|
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "notices", force: :cascade do |t|
@@ -65,11 +58,10 @@ ActiveRecord::Schema.define(version: 20190727133332) do
   create_table "offers", force: :cascade do |t|
     t.text "use"
     t.integer "price"
-    t.integer "user_id"
     t.integer "house_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["house_id"], name: "index_offers_on_house_id"
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
 

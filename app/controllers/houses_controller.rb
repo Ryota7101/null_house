@@ -10,7 +10,7 @@ class HousesController < ApplicationController
     @user  = User.find_by(id:@house.user_id)
     @comments = @house.comments
     @comment = Comment.new
-    @offer = Offer.find_by(id:@house.id)
+    @offer = Offer.find_by(house_id:@house.id)
   end
 
   def edit
@@ -57,7 +57,7 @@ class HousesController < ApplicationController
 
     def house_params
       params.require(:house).permit(:title, :overview,:layout,:price,:land_area,
-      :building_area,:age_of_a_building,:adoress,:sell_or_lend)
+      :building_area,:age_of_a_building,:adoress)
     end
 
 end
