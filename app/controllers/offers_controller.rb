@@ -9,7 +9,7 @@ class OffersController < ApplicationController
     @offer.user_id = current_user.id
     
     if @offer.save # => Validation
-      flash[:success] = "オファー大成功"
+      flash[:success] = "オファーをしました"
       redirect_to root_url
     else
       # Failure

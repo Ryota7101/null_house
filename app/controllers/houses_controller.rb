@@ -41,7 +41,7 @@ class HousesController < ApplicationController
     @house = current_user.houses.create(house_params)
     ##@house = House.new(house_params)
     if @house.save # => Validation
-      flash[:success] = "登録成功だっちゃ"
+      flash[:success] = "登録しました"
       redirect_to root_url
     else
       # Failure
