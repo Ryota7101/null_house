@@ -12,8 +12,10 @@
       </section>
   </aside>
   
+  
+  
   <div class="col-md-8">
-      <h3>hogeMicroposts</h3>
+      <h3>あなたが出品している空き家</h3>
       <% @houses.each do |house| %>
         <li>
           <%= link_to house.title, house %>
@@ -21,16 +23,18 @@
       <% end %>
   </div>
   
-  <% favos = Favorite.where(user_id:@user.id) %>
-  <% favos.each do |favo| %>
-    <li>
-      <%favo_house = House.find(favo.house_id)%>
-      <%= link_to favo_house.title, favo_house %>
-    </li>
-  <% end %>
+  <div class="col-md-8">
+    <h3>あなたがお気に入りに追加した空き家</h3>
+    <% favos = Favorite.where(user_id:@user.id) %>
+    <% favos.each do |favo| %>
+      <li>
+        <%favo_house = House.find(favo.house_id)%>
+        <%= link_to favo_house.title, favo_house %>
+      </li>
+    <% end %>
+  </div>
   
   <% if @user.premium? %>
-    <p>プレミアム会員です</p>
+    <h4>あなたはプレミアム会員です!!</h4>
   <% end %>
-  
 </div>
