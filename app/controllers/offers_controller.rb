@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  
+  #houseに対して借りたい等のオファーを出す機能
   def new
     @offer = Offer.new
   end
@@ -9,7 +9,7 @@ class OffersController < ApplicationController
     @offer.user_id = current_user.id
     
     if @offer.save # => Validation
-      flash[:success] = "オファー大成功"
+      flash[:success] = "オファーしました"
       redirect_to root_url
     else
       # Failure

@@ -1,4 +1,6 @@
 class HousesController < ApplicationController
+  #空き家
+  
   helper_method :lm
   
   def index
@@ -6,6 +8,7 @@ class HousesController < ApplicationController
   end
 
   def show
+    #付けられたコメントやオファーも表示
     @house = House.find(params[:id])
     @user  = User.find_by(id:@house.user_id)
     @comments = @house.comments
@@ -50,6 +53,7 @@ class HousesController < ApplicationController
   end
   
   def lm(x1,x2,x3,x4,x5)
+    #空き家の価格を予測して表示
    (27073 + 4.82355928*x1 - 1097.43589744*x2 + 1625.64102564*x3  - 48.23559279*x4 - 2076.92307692*x5).to_i
   end
 

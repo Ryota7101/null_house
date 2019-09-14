@@ -1,4 +1,7 @@
 class NoticesController < ApplicationController
+  #運営からのお知らせ機能
+  # 管理者のみがアクセスできる
+  
   before_action :ensure_correct_user, {only: [:index, 
                                               :show,
                                               :new,
@@ -20,7 +23,7 @@ class NoticesController < ApplicationController
     @notice = Notice.new(notice_params)
     if @notice.save # => Validation
       # Sucess
-      flash[:success] = "運営からのお知らせを作成したぞ"
+      flash[:success] = "運営からのお知らせを作成しました"
       redirect_to root_url
     else
       # Failure
