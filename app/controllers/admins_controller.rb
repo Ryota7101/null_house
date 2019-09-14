@@ -1,4 +1,6 @@
 class AdminsController < ApplicationController
+  #管理者権限を管理する
+  
   before_action :ensure_correct_user, {only: [:houses, 
                                               :users,
                                               :comments,
@@ -26,6 +28,7 @@ class AdminsController < ApplicationController
   end
   
   def ensure_correct_user
+    #管理者でなければroot_urlへリダイレクト
     if current_user.admin?
       #何もしない
     else

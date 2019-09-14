@@ -1,4 +1,7 @@
 class NoticesController < ApplicationController
+  #運営からのお知らせ機能
+  # 管理者のみがアクセスできる
+  
   before_action :ensure_correct_user, {only: [:index, 
                                               :show,
                                               :new,

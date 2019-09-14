@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  
+  #houseに対して借りたい等のオファーを出す機能
   def new
     @offer = Offer.new
   end
