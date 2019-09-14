@@ -25,6 +25,7 @@ gem 'chartable'
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
+  gem 'rspec-rails', '~> 3.6.0'
 end
 
 group :development do
@@ -32,6 +33,7 @@ group :development do
   gem 'listen',                '3.0.8'
   gem 'spring',                '2.0.2'
   gem 'spring-watcher-listen', '2.0.1'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
