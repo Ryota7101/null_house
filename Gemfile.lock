@@ -59,7 +59,7 @@ GEM
     chartable (0.0.0.3)
       activesupport (>= 3.0.0)
       chronic (~> 0.10)
-    chartkick (3.2.1)
+    chartkick (3.4.0)
     chronic (0.10.2)
     coderay (1.1.1)
     coffee-rails (4.2.2)
